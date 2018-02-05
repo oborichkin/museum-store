@@ -1,0 +1,21 @@
+{% extends "museum/base.html" %}
+{% block title %}МУЗЕЙ{% endblock %}
+{% block main %}
+    {% include "museum/breadscrumbs.html" %}
+    <div class="row">
+    <div class="col-sm-12">
+        {% include "museum/categories_sorting.html" %}
+    </div>
+    </div>
+    <div class="row">
+        {% for author in authors %}
+            <div class="col-xs-6">
+                <a href="{{ author.get_absolute_url }}">
+                    <div style="background-image: url({{ author.logo.url }});" class="author-splash">
+                        <p>{{ author.name|lower }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

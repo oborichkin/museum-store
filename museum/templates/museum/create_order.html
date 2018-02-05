@@ -1,0 +1,23 @@
+{% extends "museum/base.html" %}
+{% load static %}
+{% load filters %}
+{% block title %}МУЗЕЙ{% endblock %}
+{% block main %}
+    {% include "museum/breadscrumbs.html" %}
+    <div class="row">
+        <div class="col-md-12">
+            {% if error_message %}
+                <p><strong>{{ error_mesage }}</strong></p>
+            {% endif %}
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% include "museum/form_template.html" %}
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <button type="submit" class="btn">Сделать заказ</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

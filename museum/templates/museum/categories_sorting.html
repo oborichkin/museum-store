@@ -1,0 +1,8 @@
+<p>сортировать по :
+    {% if sort == 'name' %}<span class="active-red">{% endif %}
+        <a href="?sort=name">алфавиту</a>
+    {% if sort == "name" %}</span>{% endif %} /
+    {% if sort == 'popularity' %}<span class="active-red">{% endif %}
+        <a href="?sort=popularity">популярности</a>
+    {% if sort == 'popularity' %}</span>{% endif %}
+</p>

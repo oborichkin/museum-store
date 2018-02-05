@@ -1,0 +1,72 @@
+{% extends "museum/base.html" %}
+{% load static %}
+{% load filters %}
+{% block title %}МУЗЕЙ{% endblock %}
+{% block style %}
+    <style>
+    body::after{
+        position:absolute; width:0; height:0; overflow:hidden; z-index:-1;
+        content: {% for m in moldings %} url({{ m.image.url }}) {% endfor %};
+    }
+    {% for molding in moldings %}
+        .{{ molding.slug }} {
+            border: 30px solid #FFF;
+            border-image: url({{ molding.image.url }}) {{ molding.widthImage }};
+        }
+    {% endfor %}
+    </style>
+{% endblock %}
+{% block main %}
+    {% include "museum/breadscrumbs.html" %}
+    <div class="row">
+        <div class="col-md-6">
+            <img id="painting" class="painting-big" src="{{ painting.full_image.url }}">
+            <div style="display: none;" id="moldings">
+            {% for molding in moldings %}
+                <div class="molding">
+                    <label for="{{ molding.slug }}">
+                        <img onclick="changeMolding('{{ molding.slug }}')" style="width: 50px; height: 50px;" src="{{ molding.thumbnail.url }}">
+                    </label>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <hgroup>
+                <h1>{{ painting.name|upper }}</h1>
+                <h2>{{ painting.author.name|upper }}</h2>
+            </hgroup>
+            <form action="" method="post" id="item" enctype="multipart/form-data">
+                {% csrf_token %}
+                <p>размер :</p>
+                <input name="size" type="radio" value="{{ painting.width|multiply:0.5|floatformat }}" id="radio1">        <label for="radio1">{{ painting.width|multiply:0.5|floatformat }} см х {{ painting.width|multiply:painting.aspect_ratio|multiply:0.5|floatformat }} см</label><br>
+                <input name="size" type="radio" value="{{ painting.width|multiply:0.75|floatformat }}" id="radio2">        <label for="radio2">{{ painting.width|multiply:0.75|floatformat }} см х {{ painting.width|multiply:painting.aspect_ratio|multiply:0.75|floatformat }} см</label><br>
+                <input name="size" type="radio" value="{{ painting.width|floatformat }}" id="radio3" checked><label for="radio3">{{ painting.width|floatformat }} см х {{ painting.width|multiply:painting.aspect_ratio|floatformat }} см : оригинал</label><br>
+                <input name="size" type="radio" value="{{ painting.width|multiply:1.5|floatformat }}" id="radio4">        <label for="radio4">{{ painting.width|multiply:1.5|floatformat }} см х {{ painting.width|multiply:painting.aspect_ratio|multiply:1.5|floatformat }} см</label><br>
+                <input name="size" type="radio" value="{{ painting.width|multiply:2|floatformat }}" id="radio5">        <label for="radio5">{{ painting.width|multiply:2|floatformat }} см х {{ painting.width|multiply:painting.aspect_ratio|multiply:2|floatformat }} см</label><br>
+                <input name="size" type="radio" value="own" id="radio6">
+                    <label for="radio6">
+                        <input name="width" type="number" min="0" size="3" step="0.5" value="50"> см х <input name="height" type="number" min="0" size="3" step="0.5" value="50"> см : установить свой размер<br>
+                    </label>
+
+                <p>исполнение :</p>
+                <input name="execution" type="radio" value="canvas" id="radio21" checked><label onclick="HideMoldings()" for="radio21">холст</label><br>
+                <input name="execution" type="radio" value="underframe" id="radio22"><label onclick="HideMoldings()" for="radio22">холст + подрамник</label><br>
+                <input name="execution" type="radio" value="molding" id="radio23"><label onclick="ShowMoldings('{{ moldings.0.slug }}')" for="radio23">холст + подрамник + багет</label><br>
+
+                <p>дополнительные услуги :</p>
+                <input name="lacquer" type="checkbox" id="check1"><label for="check1">лак</label><br>
+                <input name="struc_gel" type="checkbox" id="check2"><label for="check2">структурный гель</label><br>
+
+                <input id="aspect" type="hidden" name="aspect" value="{{ painting.aspect_ratio }}">
+                <input id="painting-input" type="hidden" name="painting" value="{{ painting.slug }}">
+                <div class="hidden">
+                {% for molding in moldings %}
+                    <input id="{{ molding.slug }}" type="radio" name="molding" value="{{ molding.slug }}">{{ molding.slug }}
+                {% endfor %}
+                </div>
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+{% endblock %}

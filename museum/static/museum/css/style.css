@@ -1,0 +1,395 @@
+/* MAIN */
+@font-face {
+	font-family: 'Oranienbaum';
+	src: url('../fonts/Oranienbaum-Regular.eot');
+	src: url('../fonts/Oranienbaum-Regular.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/Oranienbaum-Regular.woff') format('woff'),
+		 url('../fonts/Oranienbaum-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	transition: 0.2s ease;
+}
+
+html,
+body {
+	margin:0;
+	padding:0;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+input[type="search"] {
+    width: 130px;
+}
+
+input[type="search"],
+input[type="number"]{
+	border: none;
+	border-bottom: 1px black solid;
+}
+
+input[type="search"]:focus,
+input[type="number"]:focus{
+	outline: none;
+}
+
+input[type="number"]{
+	width: 55px;
+	text-align: center;
+}
+
+input[type="radio"],
+input[type="checkbox"]{
+	display: none;
+}
+
+input[type="radio"] + label,
+input[type="checkbox"] + label{
+	cursor: pointer;
+}
+
+input[type="radio"]:checked + label,
+input[type="checkbox"]:checked + label{
+	color: #e2001a;
+	cursor: pointer;
+}
+
+input[type="radio"] + label:before,
+input[type="checkbox"] + label:before{
+	content: "> ";
+}
+
+input[type="radio"]:checked + label:before,
+input[type="checkbox"]:checked + label:before{
+	content: "# ";
+}
+
+body {
+	font-family: 'Courier New Regular', 'Courier New', monospace;
+	font-size: 14px;
+	font-weight: normal;
+	font-style: normal;
+	color: #333333;
+    margin-bottom: 60px;
+}
+
+.hidden {
+	display: none;
+}
+
+.active-red a:link,
+.active-red a:visited {
+    color: #e2001a;
+}
+
+a:link {
+	color: #000;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #000;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #000;
+	text-decoration: none;
+}
+
+a:active {
+	color: #337ab7;
+	text-decoration: none;
+}
+
+.collapsing {
+    -webkit-transition: none;
+    transition: none;
+}
+
+.justify {
+	text-align: justify;
+}
+
+.justify:after {
+	content: "";
+	display: inline-block;
+	width: 100%;
+}
+
+p.justify {
+	margin: 0;
+	padding: 0;
+	height: 20px;
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+/* LOGIN */
+#login {
+	text-align: center;
+}
+
+#login h1 {
+    font-size: 7em;
+}
+
+/* SIDEBAR */
+#sidebar {
+	margin: 0 auto;
+    padding: 24px 40px 0 40px;
+}
+
+@media (min-width: 992px) {
+	#sidebar {
+		position: fixed;
+	}
+}
+
+.tab-content {
+	max-height: 250px;
+}
+
+h1, h2 {
+	font-family: 'Oranienbaum', 'Times New Roman', serif;
+	font-weight: normal;
+}
+
+#sidebar h1 {
+	font-size: 120px;
+	margin: 0;
+	padding: 0;
+	margin-left: -3px;
+}
+
+/* SIDEBAR NAVIGATION */
+
+#header-nav {
+	text-align: justify;
+}
+
+#header-nav:after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+}
+
+#sidebar a:link {
+	color: #333333;
+	text-decoration: none;
+}
+
+#sidebar a:visited {
+	color: #333333;
+	text-decoration: none;
+}
+
+#sidebar a:hover {
+	color: #333333;
+	text-decoration: none;
+}
+
+#sidebar a:active {
+	color: #333333;
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
+
+li:before {
+	content: ">";
+	margin-right: 10px;
+	position: relative;
+	top: 1px;
+	display: inline-block;
+}
+
+/* CONTENT */
+
+#splash-image {
+	margin-top: 42px;
+	max-width: 100%;
+}
+
+/* AUTHORS */
+.author-splash,
+.style-splash {
+    height: 200px;
+    margin: 15px 0;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.author-splash p,
+.style-splash p {
+    background: #000;
+    color: white;
+    display: inline-block;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+/* STORE */
+
+.pag {
+    float: right;
+}
+
+.painting {
+    width: 100%;
+}
+
+.paintings-list .col-sm-3 p:first-of-type {
+    margin: 0;
+}
+
+.paintings-list .col-sm-3 p:last-child {
+    margin-bottom: 15px;
+    color: grey;
+}
+
+.image {
+    position: relative;
+}
+
+.image span {
+    position: absolute;
+    display: inline-block;
+    background: #000;
+    color: #fff;
+    padding: 2px;
+}
+
+.discount {
+    top: 5px;
+    right: 5px;
+}
+
+.price {
+    bottom: 5px;
+    right: 5px;
+}
+
+/* TOP BAR AND BREADSCRUMBS */
+.breadscrumbs a:first-child:before {
+    content: "";
+}
+.breadscrumbs a:before {
+    content: "> ";
+}
+
+.controls {
+    text-align: right;
+}
+
+@media (min-width: 768px) {
+    .top-bar {
+        margin-top: 60px;
+    }
+}
+
+/* ITEM */
+.painting-big {
+	max-width: 100%;
+}
+
+hgroup h1 {
+	font-size: 64px;
+}
+
+hgroup h2 {
+	font-size: 32px;
+}
+
+.molded {
+	border: 30px solid #FFF;
+}
+
+form#item * {
+    margin: 0;
+}
+
+form#item label {
+    margin-left: 25px;
+}
+
+form#item p {
+    margin-top: 25px;
+}
+
+#moldings {
+	overflow-x: auto;
+}
+
+tr {
+  vertical-align: top;
+}
+
+.molding {
+	width: 50px;
+	padding: 5px;
+	margin: 5px;
+}
+
+/* CART */
+.cart-item {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	margin-bottom: 15px;
+}
+
+.cart-item:nth-last-child(1) {
+	margin-bottom: 0;
+}
+
+.cart-item-image {
+	flex-grow: 1;
+}
+
+.cart-item-image img {
+	max-width: 228px;
+	width: 100%;
+}
+
+.cart-item-info {
+	flex-grow: 6;
+	padding-left: 15px;
+}
+
+.cart-item-info .painting-name,
+.cart-item-info .characteristics  {
+	margin: 0;
+}
+
+.cart-item-info .author-name{
+	color: grey;
+}
+
+/* FOOTER */
+.footer {
+  position: absolute;
+  bottom: 0;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+}
+
+.footer p {
+    margin: 20px 0;
+}

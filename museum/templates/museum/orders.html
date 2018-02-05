@@ -1,0 +1,14 @@
+{% extends "museum/base.html" %}
+{% load static %}
+{% load filters %}
+{% block title %}МУЗЕЙ{% endblock %}
+{% block main %}
+    {% include "museum/breadscrumbs.html" %}
+    <div class="row">
+        <div class="col-md-12">
+            {% for order in orders %}
+                <p>Заказ №{{ order.id }} <a href="{{ order.get_absolute_url }}">просмотр</a></p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

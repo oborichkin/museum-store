@@ -1,0 +1,50 @@
+{% extends "museum/template.html" %}
+{% block title %}Музей{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <section id="sidebar">
+                <h1>МУЗЕЙ</h1>
+                <nav class="" id="header-nav">
+                    <a href="#store" data-toggle="tab">магазин</a> :
+                    <a href="#album" data-toggle="tab">альбом</a> :
+                    <a href="#about" data-toggle="tab">контакты</a>
+                </nav>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="store">
+                        <ul>
+                            <li><a href="{% url "museum:authors" %}">художники</a></li>
+                            <li><a href="{% url "museum:styles" %}">направления</a></li>
+                            <li>категории</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane" id="album">
+                        <ul>
+                            <li>ss17 lookbook</li>
+                            <li>fw17 lookbook</li>
+                            <li>музей х</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane" id="about">
+                        <p class="justify">российская марка одежды текс</p>
+                        <p class="justify">текст российская марка одежды</p>
+                        <p class="justify">текс текст российская марка</p>
+                        <br>
+                        <span class="left">email : </span><span class="right">info@m-u-s-e-u-m.ru</span><br>
+                        <span class="left">phone : </span><span class="right">+7-911-178-84-54</span><br>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="col-md-8">
+            {% block main %}{% endblock %}
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; {% now "Y" %} sergey shalnov & pavel oborin</p>
+        </div>
+    </footer>
+</div>
+{% endblock %}

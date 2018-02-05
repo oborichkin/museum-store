@@ -1,0 +1,27 @@
+{% extends "museum/base.html" %}
+{% load static %}
+{% block title %}МУЗЕЙ{% endblock %}
+{% block main %}
+    {% include "museum/breadscrumbs.html" %}
+    <div class="row">
+        <div class="col-sm-6">
+            {% include "museum/categories_sorting.html" %}
+        </div>
+        {% if is_paginated %}
+        <div class="col-sm-6">
+            {% include "museum/pagination.html" %}
+        </div>
+        {% endif %}
+    </div>
+    <div class="row">
+        {% for style in styles %}
+            <div class="col-xs-6">
+                <a href="{{ style.get_absolute_url }}">
+                    <div style="background-image: url({{ style.logo.url }});" class="style-splash">
+                        <p>{{ style.name|lower }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

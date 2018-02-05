@@ -1,0 +1,18 @@
+{% extends "museum/base.html" %}
+
+{% block main %}
+    <h2>ПРОФИЛЬ</h2>
+
+    {% for field in form %}
+        {{ field.error }}
+
+    {% endfor %}
+
+    <!-- TODO: Не хардкодить URL -->
+    <form action="/accounts/profile/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit" value="Update">
+    </form>
+{% endblock %}

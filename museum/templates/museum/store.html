@@ -1,0 +1,32 @@
+{% extends "museum/base.html" %}
+{% load static %}
+{% block title %}МУЗЕЙ{% endblock %}
+{% block main %}
+    {% include "museum/breadscrumbs.html" %}
+    <div class="row">
+        <div class="col-sm-6">
+            {% include "museum/painting_sorting.html" %}
+        </div>
+        {% if is_paginated %}
+        <div class="col-sm-6">
+            {% include "museum/pagination.html" %}
+        </div>
+        {% endif %}
+    </div>
+    <div class="row">
+        <div class="paintings-list">
+            {% for painting in paintings %}
+                <a href="{{ painting.get_absolute_url }}">
+                    <div class="col-sm-3">
+                        <div class="image">
+                            <img class="painting" src="{{ painting.image.url }}">
+                            <span class="price">от 368&#8381;</span>
+                        </div>
+                        <p>{{ painting.name|lower }}</p>
+                        <p>{{ painting.author.name|lower }}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

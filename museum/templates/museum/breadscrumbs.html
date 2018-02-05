@@ -1,0 +1,20 @@
+{% load tags %}
+<div class="top-bar row">
+    <div class="col-sm-6 breadscrumbs">
+        <nav class="breadscrumbs">
+            <a href="/">главная</a>
+            {% for key, value in breadscrumbs.items %}
+                <a href="{{ value }}">{{ key|lower }}</a>
+            {% endfor %}
+        </nav>
+    </div>
+    <div class="col-sm-6 controls">
+        <form>
+            <p>
+                <input type="search" name="site-search"> поиск /
+                {% if user.is_authenticated %} {{ user.username }} (<a href="{% url "museum:logout" %}">выйти</a>) /{% else %} <a href="{% url "museum:login" %}">войти</a> /{% endif %}
+                <a href="{% url "museum:cart" %}">корзина</a> ({% item_amount user %})
+            </p>
+        </form>
+    </div>
+</div>

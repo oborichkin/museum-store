@@ -1,0 +1,11 @@
+<p>сортировать по :
+    {% if sort == 'price' %}<span class="active-red">{% endif %}
+        <a href="?sort=price">цене</a>
+    {% if sort == "price" %}</span>{% endif %} /
+    {% if sort == 'year' %}<span class="active-red">{% endif %}
+        <a href="?sort=year">новизне</a>
+    {% if sort == 'year' %}</span>{% endif %} /
+    {% if sort == 'name' %}<span class="active-red">{% endif %}
+        <a href="?sort=name">названию</a>
+    {% if sort == 'name' %}</span>{% endif %}
+</p>

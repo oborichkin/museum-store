@@ -1,0 +1,43 @@
+{% extends "museum/base.html" %}
+{% load static %}
+{% load filters %}
+{% block title %}МУЗЕЙ{% endblock %}
+{% block main %}
+    {% include "museum/breadscrumbs.html" %}
+    <div class="row">
+        <div class="col-md-8 col-sm-12">
+            {% for item in items %}
+            <div class="cart-item">
+                <div class="cart-item-image">
+                    <img src="{{ item.painting.image.url }}">
+                </div>
+                <div class="cart-item-info">
+                    <p class="painting-name">{{ item.painting.name|upper }}</p>
+                    <p class="author-name">{{ item.painting.author.name|upper }}</p>
+                    <p class="characteristics">характеристики :
+                        <ul>
+                            <li>{{ item.width }} см x {{ item.height }} см</li>
+                            <li>холст {% if not item.execution == 'canvas' %}+ подрамник {% endif %}{% if item.execution == 'molding' %}+ багет {% endif %}</li>
+                            {% if item.lacquer %}<li>лак</li>{% endif %}
+                            {% if item.struc_gel %}<li>структурный гель</li>{% endif %}
+                        </ul>
+                    </p>
+
+                    <form action="{% url 'museum:delete-item' item.pk %}" method="POST">
+                        {% csrf_token %}
+                        <input type="submit" value="DELETE">
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <p>ТОВАРЫ</p>
+            {% for item in items %}
+                <p>{{ item.painting.name }} : 999 &#8381;</p>
+            {% endfor %}
+            <p>ИТОГОВАЯ СТОИМОСТЬ</p>
+            <a href="#">ОФОРМИТЬ ЗАКАЗ</a>
+        </div>
+    </div>
+{% endblock %}
