@@ -54,11 +54,12 @@ class StylePaintingsListView(MyListView):
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
-        context = super(StylePaintingsListView, self).get_context_data(**kwargs)
+        context = super(StylePaintingsListView,
+                        self).get_context_data(**kwargs)
         style = models.Style.objects.get(slug=self.kwargs['slug'])
         context['breadscrumbs'] = {'магазин': "#",
                                    'стили': '/styles',
-                                   style.name: '#',}
+                                   style.name: '#', }
         return context
 
     def get_queryset(self):
@@ -75,7 +76,7 @@ class AuthorListView(MyListView):
     def get_context_data(self, **kwargs):
         context = super(AuthorListView, self).get_context_data(**kwargs)
         context['breadscrumbs'] = {'магазин': "#",
-                                   'художники': '/authors',}
+                                   'художники': '/authors', }
         return context
 
     def get_queryset(self):
@@ -90,11 +91,12 @@ class AuthorPaintingsListView(MyListView):
     default_ordering = ordering_list[0]
 
     def get_context_data(self, **kwargs):
-        context = super(AuthorPaintingsListView, self).get_context_data(**kwargs)
+        context = super(AuthorPaintingsListView,
+                        self).get_context_data(**kwargs)
         author = models.Author.objects.get(slug=self.kwargs['slug'])
         context['breadscrumbs'] = {'магазин': "#",
                                    'художники': '/authors',
-                                   author.name: '#',}
+                                   author.name: '#', }
         return context
 
     def get_queryset(self):
@@ -116,7 +118,8 @@ class ItemView(DetailView):
             return redirect('museum:login')
         item = models.Item()
         item.owner = request.user
-        item.painting = models.Painting.objects.get(slug=request.POST['painting'])
+        item.painting = models.Painting.objects.get(
+            slug=request.POST['painting'])
         if request.POST['size'] == 'own':
             item.width = request.POST['width']
             item.height = request.POST['height']
@@ -125,7 +128,8 @@ class ItemView(DetailView):
             item.height = float(item.width) * float(item.painting.aspect_ratio)
         item.execution = request.POST['execution']
         if item.execution == 'molding':
-            item.molding = models.Molding.objects.get(slug=request.POST['molding'])
+            item.molding = models.Molding.objects.get(
+                slug=request.POST['molding'])
         item.lacquer = ('lacquer' in request.POST.keys())
         item.struc_gel = ('struc_gel' in request.POST.keys())
         item.save()
@@ -187,7 +191,7 @@ class CreateOrder(View):
 
     # display blank form
     def get(self, request):
-        if not request.user.is_authenticated():
+        if not request.user.is_authenticated:
             return redirect('museum:login')
         form = self.form_class(None)
         return render(request, self.template_name, {'form': form})
@@ -210,7 +214,7 @@ class LoginView(View):
 
     # display blank form
     def get(self, request):
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             return redirect('museum:index')
         form = self.form_class(None)
         return render(request, self.template_name, {'form': form})
@@ -226,7 +230,7 @@ class LoginView(View):
             return redirect('museum:index')
 
         form = self.form_class(request.POST)
-        return render(request, self.template_name, {'form': form })
+        return render(request, self.template_name, {'form': form})
 
 
 class LogoutView(View):
@@ -241,7 +245,7 @@ class RegistrationView(View):
 
     # display blank form
     def get(self, request):
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             return redirect('museum:index')
         form = self.form_class(None)
         return render(request, self.template_name, {'form': form})
@@ -265,12 +269,3 @@ class RegistrationView(View):
                     return redirect('museum:index')
 
         return render(request, self.template_name, {'form': form})
-
-
-
-
-
-
-
-
-
