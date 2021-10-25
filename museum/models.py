@@ -35,7 +35,6 @@ class Author(models.Model):
         verbose_name = 'Автор'
         verbose_name_plural = 'Авторы'
 
-    @models.permalink
     def get_absolute_url(self):
         return 'museum:author-paintings', None, {'slug': self.slug}
 
@@ -64,7 +63,6 @@ class Style(models.Model):
         verbose_name = 'Направление'
         verbose_name_plural = 'Направления'
 
-    @models.permalink
     def get_absolute_url(self):
         return 'museum:style-paintings', None, {'slug': self.slug}
 
@@ -106,7 +104,6 @@ class Painting(models.Model):
     def __str__(self):
         return self.name
 
-    @models.permalink
     def get_absolute_url(self):
         return 'museum:item', None, {'slug': self.slug}
 
@@ -167,7 +164,6 @@ class Order(models.Model):
         verbose_name = 'Заказ'
         verbose_name_plural = 'Заказы'
 
-    @models.permalink
     def get_absolute_url(self):
         return 'museum:order', None, {'pk': self.pk}
 
